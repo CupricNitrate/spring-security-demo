@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    #mysql驱动8.x版本使用com.mysql.cj.jdbc.Driver
+    #5.x使用com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #数据库地址
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    #数据库账号
+    username: root
+    #数据库密码
+    password: root
+    #hikari连接池
+    hikari:
+      #2*cpu
+      maximum-pool-size: 16
+      #cpu
+      minimum-idle: 8
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+
+token:
+  access:
+    public-key: /Users/xiaoshengpeng/auth_key/key/rsa_key.pub
+    private-key: /Users/xiaoshengpeng/auth_key/key/rsa_key
+  refresh:
+    public-key: /Users/xiaoshengpeng/auth_key/refresh/rsa_key.pub
+    private-key: /Users/xiaoshengpeng/auth_key/refresh/rsa_key
