@@ -17,7 +17,7 @@ public interface AuthorityMapper extends BaseMapper<Authority> {
      * @param uid
      * @return
      */
-    @Select("SELECT a.*\n" +
+    @Select("SELECT a.*, a.resource as 'authority'\n" +
             "FROM ss_user u LEFT JOIN ss_user_role_rel ur ON u.id = ur.uid\n" +
             "LEFT JOIN ss_role r ON ur.rid = r.id\n" +
             "LEFT JOIN ss_authority_role_rel ar ON r.id = ar.role_id\n" +

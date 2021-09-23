@@ -157,13 +157,9 @@ public class JwtUtils {
         PrivateKey privateKey = RsaUtils.getPrivateKey(keyPrivateFilePath);
 
         //权限设置
-        List<Authority> authorities = new ArrayList<>();
-        Authority authority = new Authority();
-        authority.setId(1)
-                .setName("authority")
-                .setDesc("示例权限")
-                .setAuthority("ROLE_user")
-                .setType(1);
+        List<ClaimInfo.ClaimAuthority> authorities = new ArrayList<>();
+        ClaimInfo.ClaimAuthority authority = new ClaimInfo.ClaimAuthority();
+        authority.setAuthority("ROLE_USER");
         authorities.add(authority);
         //荷载数据
         ClaimInfo claimInfo = ClaimInfo.builder()

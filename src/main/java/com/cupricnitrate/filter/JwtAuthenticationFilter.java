@@ -26,6 +26,7 @@ import java.security.PrivateKey;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Jwt认证过滤器
@@ -96,7 +97,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
 
         //创建荷载信息
-        List<Authority> authorities = (List<Authority>) authResult.getAuthorities();
+        List<ClaimInfo.ClaimAuthority> authorities = authResult.getAuthorities().stream().map(a -> {
+            ClaimInfo.ClaimAuthority claimAuthority = new ClaimInfo.ClaimAuthority();
+            claimAuthority.setAuthority(a.getAuthority());
+            return claimAuthority;
+        }).collect(Collectors.toList());
+
         ClaimInfo claim = ClaimInfo.builder().username(authResult.getName()).authorities(authorities).build();
         //签发token,使用私钥进行签发
         LoginRespDto respDto = new LoginRespDto(

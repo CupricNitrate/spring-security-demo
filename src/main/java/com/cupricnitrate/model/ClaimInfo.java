@@ -26,5 +26,16 @@ public class ClaimInfo {
     /**
      * 权限
      */
-    private List<Authority> authorities;
+    private List<ClaimAuthority> authorities;
+
+    @Data
+    public static class ClaimAuthority implements GrantedAuthority{
+
+        private String authority;
+
+        @Override
+        public String getAuthority() {
+            return this.authority;
+        }
+    }
 }
